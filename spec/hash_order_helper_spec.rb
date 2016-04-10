@@ -2,27 +2,17 @@ require 'spec_helper'
 
 describe HashOrderHelper do
   let(:hash) { {b: 200, a: 100, c: 150} }
-  let(:org_hash) { {} }
+  let!(:org_hash) { hash.dup.freeze }
   let(:result) { [] }
   let(:args) { [] }
   let(:expected_type) { Hash }
 
   subject do
-    org_hash.replace(hash)
-    org_hash.freeze
-
-    if args.last.is_a?(Proc)
-      block = args.pop
-      retval = hash.send(described_class, *args, &block)
-    else
-      retval = hash.send(described_class, *args)
-    end
-
+    block = args.last.is_a?(Proc) ? args.pop : nil
+    retval = hash.send(described_class, *args, &block)
     expect(retval).to be_kind_of expected_type
-
     retval = retval.to_a
-    result.replace(retval)
-    result.freeze
+    result.replace(retval).freeze
     retval
   end
 
