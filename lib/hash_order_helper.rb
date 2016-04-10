@@ -91,4 +91,4 @@ module HashOrderHelper
     self.replace(new_hash)
   end
 end
-Hash.include(HashOrderHelper)
+Hash.send(:include, HashOrderHelper)
