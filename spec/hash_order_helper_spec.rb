@@ -11,9 +11,7 @@ describe HashOrderHelper do
     block = args.last.is_a?(Proc) ? args.pop : nil
     retval = hash.send(described_class, *args, &block)
     expect(retval).to be_kind_of expected_type
-    retval = retval.to_a
-    result.replace(retval).freeze
-    retval
+    result.replace(retval.to_a).freeze
   end
 
   describe :sort_pair do
