@@ -41,7 +41,7 @@ The following methods are added:
 * `sort_pair_by {|key, value| ... } -> Hash`
 * `sort_pair_by! {|key, value| ... } -> Hash`
 * `at(nth) -> Array`
-* `insert(nth, key, value) -> Hash`
+* `insert(nth, hash) -> Hash`
 * `last -> Array`
 * `last(n) -> Array`
 * `pop -> Array`

@@ -56,10 +56,10 @@ describe HashOrderHelper do
   end
 
   describe :insert do
-    let(:args) { [1, :d, 300] }
+    let(:args) { [1, {d: 300, e: 400}] }
 
     it do
-      is_expected.to eq [[:b, 200], [:d, 300], [:a, 100], [:c, 150]]
+      is_expected.to eq [[:b, 200], [:d, 300], [:e, 400], [:a, 100], [:c, 150]]
       expect(hash.to_a).to eq result
     end
   end
