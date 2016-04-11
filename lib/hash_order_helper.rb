@@ -77,13 +77,13 @@ module HashOrderHelper
     self.replace(new_hash)
   end
 
-  def unshift(new_key, new_value)
+  def unshift(unshift_hash)
     hash_keys = self.keys
-    hash_keys.unshift(new_key)
+    hash_keys.unshift(*unshift_hash.keys)
     new_hash = {}
 
     hash_keys.each do |key|
-      value = (key == new_key) ? new_value : self[key]
+      value = unshift_hash.has_key?(key) ? unshift_hash[key] : self[key]
       new_hash[key] = value
     end
 

@@ -116,10 +116,10 @@ describe HashOrderHelper do
   end
 
   describe :unshift do
-    let(:args) { [:d, 300] }
+    let(:args) { [{d: 300, e: 400}] }
 
     it do
-      is_expected.to eq [[:d, 300], [:b, 200], [:a, 100], [:c, 150]]
+      is_expected.to eq [[:d, 300], [:e, 400], [:b, 200], [:a, 100], [:c, 150]]
       expect(hash.to_a).to eq result
     end
   end

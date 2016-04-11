@@ -30,7 +30,7 @@ hash = {b: 200, a: 100, c: 150}
 hash.sort_pair
 #=> {:a=>100, :b=>200, :c=>150}
 
-hash.unshift(:d, 300)
+hash.unshift(d: 300)
 #=> {:d=>300, :b=>200, :a=>100, :c=>150}
 ```
 
@@ -47,4 +47,4 @@ The following methods are added:
 * `pop -> Array`
 * `pop(n) -> Array`
 * `push(hash) -> Hash`
-* `unshift(key, value) -> Hash`
+* `unshift(hash) -> Hash`
