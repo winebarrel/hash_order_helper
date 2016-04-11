@@ -46,5 +46,5 @@ The following methods are added:
 * `last(n) -> Array`
 * `pop -> Array`
 * `pop(n) -> Array`
-* `push(key, value) -> Hash`
+* `push(hash) -> Hash`
 * `unshift(key, value) -> Hash`

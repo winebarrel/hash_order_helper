@@ -65,13 +65,12 @@ module HashOrderHelper
     last_values
   end
 
-  def push(new_key, new_value)
+  def push(push_hash)
     hash_keys = self.keys
-    hash_keys.push(new_key)
+    hash_keys.push(*push_hash.keys)
     new_hash = {}
-
     hash_keys.each do |key|
-      value = (key == new_key) ? new_value : self[key]
+      value = push_hash.has_key?(key) ? push_hash[key] : self[key]
       new_hash[key] = value
     end
 

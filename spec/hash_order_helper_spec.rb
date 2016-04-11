@@ -107,10 +107,10 @@ describe HashOrderHelper do
   end
 
   describe :push do
-    let(:args) { [:d, 300] }
+    let(:args) { [{d: 300, e: 400}] }
 
     it do
-      is_expected.to eq [[:b, 200], [:a, 100], [:c, 150], [:d, 300]]
+      is_expected.to eq [[:b, 200], [:a, 100], [:c, 150], [:d, 300], [:e, 400]]
       expect(hash.to_a).to eq result
     end
   end
