@@ -107,20 +107,42 @@ describe HashOrderHelper do
   end
 
   describe :push do
-    let(:args) { [{d: 300, e: 400}] }
+    context 'key does not exists' do
+      let(:args) { [{d: 300, e: 400}] }
 
-    it do
-      is_expected.to eq [[:b, 200], [:a, 100], [:c, 150], [:d, 300], [:e, 400]]
-      expect(hash.to_a).to eq result
+      it do
+        is_expected.to eq [[:b, 200], [:a, 100], [:c, 150], [:d, 300], [:e, 400]]
+        expect(hash.to_a).to eq result
+      end
+    end
+
+    context 'key exists' do
+      let(:args) { [{b: 300, e: 400}] }
+
+      it do
+        is_expected.to eq [[:a, 100], [:c, 150], [:b, 300], [:e, 400]]
+        expect(hash.to_a).to eq result
+      end
     end
   end
 
   describe :unshift do
-    let(:args) { [{d: 300, e: 400}] }
+    context 'key does not exists' do
+      let(:args) { [{d: 300, e: 400}] }
 
-    it do
-      is_expected.to eq [[:d, 300], [:e, 400], [:b, 200], [:a, 100], [:c, 150]]
-      expect(hash.to_a).to eq result
+      it do
+        is_expected.to eq [[:d, 300], [:e, 400], [:b, 200], [:a, 100], [:c, 150]]
+        expect(hash.to_a).to eq result
+      end
+    end
+
+    context 'key exists' do
+      let(:args) { [{c: 300, e: 400}] }
+
+      it do
+        is_expected.to eq [[:c, 300], [:e, 400], [:b, 200], [:a, 100]]
+        expect(hash.to_a).to eq result
+      end
     end
   end
 end

@@ -66,7 +66,7 @@ module HashOrderHelper
   end
 
   def push(push_hash)
-    hash_keys = self.keys
+    hash_keys = self.keys - push_hash.keys
     hash_keys.push(*push_hash.keys)
     new_hash = {}
     hash_keys.each do |key|
@@ -78,7 +78,7 @@ module HashOrderHelper
   end
 
   def unshift(unshift_hash)
-    hash_keys = self.keys
+    hash_keys = self.keys - unshift_hash.keys
     hash_keys.unshift(*unshift_hash.keys)
     new_hash = {}
 
