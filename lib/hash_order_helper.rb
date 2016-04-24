@@ -65,7 +65,7 @@ module HashOrderHelper
     last_values
   end
 
-  def push(push_hash)
+  def nd_push(push_hash)
     hash_keys = self.keys - push_hash.keys
     hash_keys.push(*push_hash.keys)
     new_hash = {}
@@ -74,11 +74,17 @@ module HashOrderHelper
       new_hash[key] = value
     end
 
+    new_hash
+  end
+  alias < nd_push
+
+  def push(push_hash)
+    new_hash = nd_push(push_hash)
     self.replace(new_hash)
   end
   alias << push
 
-  def unshift(unshift_hash)
+  def nd_unshift(unshift_hash)
     hash_keys = self.keys - unshift_hash.keys
     hash_keys.unshift(*unshift_hash.keys)
     new_hash = {}
@@ -88,6 +94,11 @@ module HashOrderHelper
       new_hash[key] = value
     end
 
+    new_hash
+  end
+
+  def unshift(unshift_hash)
+    new_hash = nd_unshift(unshift_hash)
     self.replace(new_hash)
   end
 
@@ -97,6 +108,14 @@ module HashOrderHelper
     end
 
     receiver.unshift(self)
+  end
+
+  def >(receiver)
+    unless receiver.is_a?(Hash)
+      raise TypeError, "no implicit conversion of #{receiver.inspect}:#{receiver.class} into Hash"
+    end
+
+    receiver.nd_unshift(self)
   end
 end
 Hash.send(:include, HashOrderHelper)
