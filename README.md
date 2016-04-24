@@ -46,9 +46,12 @@ The following methods are added:
 * `last(n) -> Array`
 * `pop -> Array`
 * `pop(n) -> Array` (alias: `<<`)
+* `nd_push(hash) -> Hash` **non-destructive** (alias: `<`)
 * `push(hash) -> Hash`
+* `nd_unshift(hash) -> Hash` **non-destructive**
 * `unshift(hash) -> Hash`
 * `>>(receiver_hash) -> Hash`
+* `>(receiver_hash) -> Hash` **non-destructive**
 
 ### `>>` method
 
