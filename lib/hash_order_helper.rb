@@ -118,4 +118,4 @@ module HashOrderHelper
     receiver.nd_unshift(self)
   end
 end
-Hash.send(:include, HashOrderHelper)
+Hash.send(:prepend, HashOrderHelper)
