@@ -45,6 +45,18 @@ The following methods are added:
 * `last -> Array`
 * `last(n) -> Array`
 * `pop -> Array`
-* `pop(n) -> Array`
+* `pop(n) -> Array` (alias: `<<`)
 * `push(hash) -> Hash`
 * `unshift(hash) -> Hash`
+* `>>(receiver_hash) -> Hash`
+
+### `>>` method
+
+```ruby
+require 'hash_order_helper'
+
+hash = {b: 200, a: 100, c: 150}
+
+{d: 300} >> hash
+#=> {:d=>300, :b=>200, :a=>100, :c=>150}
+```
