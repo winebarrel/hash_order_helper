@@ -76,7 +76,7 @@ module HashOrderHelper
 
     new_hash
   end
-  alias < nd_push
+  alias + nd_push
 
   def push(push_hash)
     new_hash = nd_push(push_hash)
@@ -109,13 +109,5 @@ module HashOrderHelper
 
     receiver.unshift(self)
   end
-
-  def >(receiver)
-    unless receiver.is_a?(Hash)
-      raise TypeError, "no implicit conversion of #{receiver.inspect}:#{receiver.class} into Hash"
-    end
-
-    receiver.nd_unshift(self)
-  end
 end
-Hash.send(:prepend, HashOrderHelper)
+Hash.send(:include, HashOrderHelper)
