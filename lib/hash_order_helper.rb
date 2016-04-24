@@ -76,6 +76,7 @@ module HashOrderHelper
 
     self.replace(new_hash)
   end
+  alias << push
 
   def unshift(unshift_hash)
     hash_keys = self.keys - unshift_hash.keys
@@ -88,6 +89,14 @@ module HashOrderHelper
     end
 
     self.replace(new_hash)
+  end
+
+  def >>(receiver)
+    unless receiver.is_a?(Hash)
+      raise TypeError, "no implicit conversion of #{receiver.inspect}:#{receiver.class} into Hash"
+    end
+
+    receiver.unshift(self)
   end
 end
 Hash.send(:include, HashOrderHelper)
