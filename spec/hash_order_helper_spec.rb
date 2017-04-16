@@ -56,11 +56,22 @@ describe HashOrderHelper do
   end
 
   describe :insert do
-    let(:args) { [1, {d: 300, e: 400}] }
+    context 'not nil' do
+      let(:args) { [1, {d: 300, e: 400}] }
 
-    it do
-      is_expected.to eq [[:b, 200], [:d, 300], [:e, 400], [:a, 100], [:c, 150]]
-      expect(hash.to_a).to eq result
+      it do
+        is_expected.to eq [[:b, 200], [:d, 300], [:e, 400], [:a, 100], [:c, 150]]
+        expect(hash.to_a).to eq result
+      end
+    end
+
+    context 'nil' do
+      let(:args) { [1, nil] }
+
+      it do
+        is_expected.to eq [[:b, 200], [:a, 100], [:c, 150]]
+        expect(hash.to_a).to eq result
+      end
     end
   end
 
@@ -125,6 +136,15 @@ describe HashOrderHelper do
           expect(hash.to_a).to eq org_hash.to_a
         end
       end
+
+      context 'nil' do
+        let(:args) { [nil] }
+
+        it do
+          is_expected.to eq [[:b, 200], [:a, 100], [:c, 150]]
+          expect(hash.to_a).to eq org_hash.to_a
+        end
+      end
     end
   end
 
@@ -144,6 +164,15 @@ describe HashOrderHelper do
 
         it do
           is_expected.to eq [[:a, 100], [:c, 150], [:b, 300], [:e, 400]]
+          expect(hash.to_a).to eq result
+        end
+      end
+
+      context 'nil' do
+        let(:args) { [nil] }
+
+        it do
+          is_expected.to eq [[:b, 200], [:a, 100], [:c, 150]]
           expect(hash.to_a).to eq result
         end
       end
@@ -168,6 +197,15 @@ describe HashOrderHelper do
         expect(hash.to_a).to eq org_hash.to_a
       end
     end
+
+    context 'nil' do
+      let(:args) { [nil] }
+
+      it do
+        is_expected.to eq [[:b, 200], [:a, 100], [:c, 150]]
+        expect(hash.to_a).to eq org_hash.to_a
+      end
+    end
   end
 
   describe :unshift do
@@ -186,6 +224,15 @@ describe HashOrderHelper do
       it do
         is_expected.to eq [[:c, 300], [:e, 400], [:b, 200], [:a, 100]]
         expect(hash.to_a).to eq result
+      end
+    end
+
+    context 'nil' do
+      let(:args) { [nil] }
+
+      it do
+        is_expected.to eq [[:b, 200], [:a, 100], [:c, 150]]
+        expect(hash.to_a).to eq org_hash.to_a
       end
     end
   end

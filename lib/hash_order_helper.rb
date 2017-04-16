@@ -32,6 +32,7 @@ module HashOrderHelper
   end
 
   def insert(nth, insert_hash)
+    insert_hash ||= {}
     hash_keys = self.keys
     hash_keys.insert(nth, *insert_hash.keys)
     new_hash = {}
@@ -66,6 +67,7 @@ module HashOrderHelper
   end
 
   def nd_push(push_hash)
+    push_hash ||= {}
     hash_keys = self.keys - push_hash.keys
     hash_keys.push(*push_hash.keys)
     new_hash = {}
@@ -85,6 +87,7 @@ module HashOrderHelper
   alias << push
 
   def nd_unshift(unshift_hash)
+    unshift_hash ||= {}
     hash_keys = self.keys - unshift_hash.keys
     hash_keys.unshift(*unshift_hash.keys)
     new_hash = {}
